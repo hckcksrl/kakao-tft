@@ -1,3 +1,3 @@
 # kakao-tft
 
-aws develop
+kakao chatbot
