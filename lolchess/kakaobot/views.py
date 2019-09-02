@@ -4,7 +4,7 @@ from rest_framework import status
 from rest_framework.request import Request
 import requests
 
-api_key = 'RGAPI-4192ba3c-6bca-477e-a40e-c9edef55a768'
+api_key = 'RGAPI-20d0c51f-3b8f-4d24-923c-de3a02c40809'
 class Message(APIView) :
 
     def get_summoner_id(self,nickname):
@@ -44,7 +44,6 @@ class Message(APIView) :
         data = request.data
         user_key = data['user_key']
         types = data['type']
-        print((types))
         content = data['content']
 
         if content == '소환사 검색':
