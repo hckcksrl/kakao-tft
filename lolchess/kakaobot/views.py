@@ -88,7 +88,7 @@ class Keyboard(APIView):
     def get(self, request , format=None):
         return Response({
             'type':'buttons',
-            'buttons':['소환사 검색','시너지','아이템']
+            'buttons':['소환사 검색']
         })
 
 
