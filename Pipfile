@@ -11,6 +11,7 @@ djangorestframework = "*"
 uwsgi = "*"
 django-cors-headers = "*"
 requests = "*"
+rerequests = "*"
 
 [requires]
 python_version = "3.7"
