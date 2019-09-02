@@ -3,8 +3,12 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.request import Request
 import requests
+import json
+with open('config.json', 'r') as f:
+    config = json.load(f)
 
-api_key = 'RGAPI-20d0c51f-3b8f-4d24-923c-de3a02c40809'
+api_key = config['api_key']
+
 class Message(APIView) :
 
     def get_summoner_id(self,nickname):
