@@ -11,13 +11,7 @@ class Message(APIView) :
         api ='https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/'+nickname+'?api_key=RGAPI-f4f16fe6-015f-4471-b99d-e6235bc452d2'
         data = requests.get(api)
         if data.status_code != 200:
-            return Response(
-                data={
-                    'message': {
-                        'text': '사용자가 존재하지 않습니다.'
-                    }
-                }
-            )
+            return False
         return data.json()
 
     def get_summoner_data(self,encrypt_id):
@@ -65,6 +59,12 @@ class Message(APIView) :
         else :
 
             summoner = self.get_summoner_id(content)
+            if summoner == False :
+                return Response(data={
+                    'message':{
+                        'text': '소환사가 존재하지 않습니다.'
+                    }
+                })
             encrypt_id = summoner['id']
             summoner_data = self.get_summoner_data(encrypt_id)
 
