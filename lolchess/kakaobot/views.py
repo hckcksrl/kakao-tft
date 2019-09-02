@@ -44,6 +44,7 @@ class Message(APIView) :
         data = request.data
         user_key = data['user_key']
         types = data['type']
+        print((types))
         content = data['content']
 
         if content == '소환사 검색':
