@@ -26,12 +26,7 @@ class Message(APIView) :
         return data.json()
 
     def summoner_result(self, content):
-        if content =='소환사 검색':
-            return Response(data={
-                'message':{
-                    'text':'소환사 이름을 입력하세요'
-                }
-            })
+
         summoner = self.get_summoner_id(content)
         encrypt_id = summoner['id']
         summoner_data = self.get_summoner_data(encrypt_id)
@@ -57,14 +52,34 @@ class Message(APIView) :
         types = data['type']
         content = data['content']
 
-
         if content == '소환사 검색':
-            self.summoner_result(content=content)
+            return Response(data={
+                'message': {
+                    'text': '소환사 이름을 입력하세요'
+                }
+            })
         elif content == '시너지':
             pass
         elif content == '아이템':
             pass
+        summoner = self.get_summoner_id(content)
+        encrypt_id = summoner['id']
+        summoner_data = self.get_summoner_data(encrypt_id)
 
+        for i in summoner_data:
+            if i['queueType'] == 'RANKED_TFT':
+                return Response(data={
+                    'message':
+                        {
+                            'text': f'소환사이름 : {i["summonerName"]}\n티어 : {i["tier"]} {i["rank"]}\t{i["leaguePoints"]}\n승리 : {i["wins"]}\n패배 : {i["losses"]}'
+                        }
+                })
+
+        return Response(data={
+            'message': {
+                'text': '전적 검색 결과가 없습니다.'
+            }
+        })
 
 
 
