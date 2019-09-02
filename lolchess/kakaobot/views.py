@@ -9,7 +9,11 @@ from django.http import JsonResponse
 class Message(APIView) :
 
     def get_summoner_id(self,nickname):
+<<<<<<< HEAD
         api ='https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/'+nickname+'?api_key=RGAPI-f4f16fe6-015f-4471-b99d-e6235bc452d2'
+=======
+        api ='https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/'+nickname+'?api_key=RGAPI-f4f16fe6-015f-4471-b99d-e6235bc452d2' 
+>>>>>>> 0fb8480c6aba58292436b3bda5a4124a3b39c9df
         data = requests.get(api)
         if data.status_code != 200:
             return False
@@ -37,6 +41,7 @@ class Message(APIView) :
         summoner_data = self.get_summoner_data(encrypt_id)
         for i in summoner_data:
             if i['queueType'] =='RANKED_TFT':
+<<<<<<< HEAD
                 result2 = {
                     'message':
                         {
@@ -51,6 +56,18 @@ class Message(APIView) :
                 }
             }
         )
+=======
+                tier = i['tier']
+                rank = i['rank']
+                name = i['summonerName']
+                point = i['leaguePoints']
+                win = i['wins']
+                loss = i['losses']
+                result2 = {'message':{'text':'소환사이름 : '+name+'\n티어 : '+tier+' '+rank+'\t'+str(point)+'\n승리 : '+str(win)+'\n패배 : '+str(loss) }}
+                return Response(status=status.HTTP_200_OK,data=result2)
+        return Response(data={'message':{'text':'전적 검색 결과가 없습니다.'}})
+
+>>>>>>> 0fb8480c6aba58292436b3bda5a4124a3b39c9df
 
 class Keyboard(APIView):
 
