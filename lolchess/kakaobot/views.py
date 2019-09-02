@@ -4,18 +4,18 @@ from rest_framework import status
 from rest_framework.request import Request
 import requests
 
-
+api_key = 'RGAPI-4192ba3c-6bca-477e-a40e-c9edef55a768'
 class Message(APIView) :
 
     def get_summoner_id(self,nickname):
-        api ='https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/'+nickname+'?api_key=RGAPI-f4f16fe6-015f-4471-b99d-e6235bc452d2'
+        api =f'https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/{nickname}?api_key={api_key}'
         data = requests.get(api)
         if data.status_code != 200:
             return False
         return data.json()
 
     def get_summoner_data(self,encrypt_id):
-        api = 'https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/'+encrypt_id+'?api_key=RGAPI-f4f16fe6-015f-4471-b99d-e6235bc452d2'
+        api = f'https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/{encrypt_id}?api_key={api_key}'
         data = requests.get(api)
         return data.json()
 
