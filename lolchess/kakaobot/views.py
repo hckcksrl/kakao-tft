@@ -51,6 +51,14 @@ class Message(APIView) :
             return Response(data={
                 'message': {
                     'text': '소환사 이름을 입력하세요'
+                },
+                'keyboard':{
+                    "type": "buttons",
+                    "buttons": [
+                        "처음으로",
+                        "아이템",
+                        "시너지"
+                    ]
                 }
             })
         elif content == '시너지':
