@@ -63,6 +63,7 @@ class Message(APIView) :
         elif content == '아이템':
             pass
         else :
+
             summoner = self.get_summoner_id(content)
             encrypt_id = summoner['id']
             summoner_data = self.get_summoner_data(encrypt_id)
@@ -92,5 +93,3 @@ class Keyboard(APIView):
             'type':'buttons',
             'buttons':['소환사 검색','아이템','시너지']
         })
-
-
