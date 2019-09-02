@@ -85,7 +85,6 @@ class Message(APIView) :
 
 
 
-
 class Keyboard(APIView):
 
     def get(self, request , format=None):
