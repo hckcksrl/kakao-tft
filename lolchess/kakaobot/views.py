@@ -57,7 +57,7 @@ class Message(APIView) :
                         {   'photo': {
                                 'url': f'https://cdn.lolchess.gg/images/lol/tier/{i["tier"].lower()}_{len(i["rank"])}.png',
                                 'width': 640,
-                                'height': 480
+                                'height': 640
                             },
                             'text': f'소환사이름 : {i["summonerName"]}\n티어 : {i["tier"]} {i["rank"]}    {i["leaguePoints"]}점\n승리 : {i["wins"]}\n패배 : {i["losses"]}'
                         },
