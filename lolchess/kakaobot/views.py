@@ -4,10 +4,18 @@ from rest_framework import status
 from rest_framework.request import Request
 import requests
 import json
+<<<<<<< HEAD
+=======
+
+>>>>>>> ef34e1df3620d382ee3fae25901631017f28ec60
 with open('/home/ubuntu/kakao-tft/lolchess/kakaobot/config.json', 'r') as f:
     config = json.load(f)
 
 api_key = config['api_key']
+button = {
+    'type': 'buttons',
+    'buttons': ['소환사 검색']
+}
 
 class Message(APIView) :
 
@@ -55,6 +63,7 @@ class Message(APIView) :
                 'message': {
                     'text': '소환사 이름을 입력하세요'
                 },
+                'keyboard': button
                 # 'keyboard':{
                 #     "type": "buttons",
                 #     "buttons": [
@@ -85,7 +94,8 @@ class Message(APIView) :
             return Response(data={
                 'message':{
                     'text': '소환사가 존재하지 않습니다.'
-                }
+                },
+                'keyboard': button
             })
         encrypt_id = summoner['id']
         summoner_data = self.get_summoner_data(encrypt_id)
@@ -100,13 +110,15 @@ class Message(APIView) :
                                 'height': 480
                             },
                             'text': f'소환사이름 : {i["summonerName"]}\n티어 : {i["tier"]} {i["rank"]}\t{i["leaguePoints"]}\n승리 : {i["wins"]}\n패배 : {i["losses"]}'
-                        }
+                        },
+                    'keyboard':button
                 })
 
         return Response(data={
             'message': {
                 'text': '전적 검색 결과가 없습니다.'
-            }
+            },
+            'keyboard': button
         })
 
 
@@ -114,7 +126,11 @@ class Message(APIView) :
 class Keyboard(APIView):
 
     def get(self, request , format=None):
+<<<<<<< HEAD
         return Response({
             'type':'buttons',
             'buttons':['소환사 검색']
         })
+=======
+        return Response(data=button)
+>>>>>>> ef34e1df3620d382ee3fae25901631017f28ec60
