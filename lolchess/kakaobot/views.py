@@ -59,7 +59,7 @@ class Message(APIView) :
                                 'width': 640,
                                 'height': 480
                             },
-                            'text': f'소환사이름 : {i["summonerName"]}\n티어 : {i["tier"]} {i["rank"]}\t{i["leaguePoints"]}점\n승리 : {i["wins"]}\n패배 : {i["losses"]}'
+                            'text': f'소환사이름 : {i["summonerName"]}\n티어 : {i["tier"]} {i["rank"]}    {i["leaguePoints"]}점\n승리 : {i["wins"]}\n패배 : {i["losses"]}'
                         },
                 })
 
