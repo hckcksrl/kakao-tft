@@ -4,7 +4,7 @@ from rest_framework import status
 from rest_framework.request import Request
 import requests
 import json
-with open('config.json', 'r') as f:
+with open('/home/ubuntu/kakao-tft/lolchess/kakaobot/config.json', 'r') as f:
     config = json.load(f)
 
 api_key = config['api_key']
