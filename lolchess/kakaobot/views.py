@@ -4,10 +4,6 @@ from rest_framework import status
 from rest_framework.request import Request
 import requests
 import json
-<<<<<<< HEAD
-=======
-
->>>>>>> ef34e1df3620d382ee3fae25901631017f28ec60
 with open('/home/ubuntu/kakao-tft/lolchess/kakaobot/config.json', 'r') as f:
     config = json.load(f)
 
@@ -109,7 +105,7 @@ class Message(APIView) :
                                 'width': 640,
                                 'height': 480
                             },
-                            'text': f'소환사이름 : {i["summonerName"]}\n티어 : {i["tier"]} {i["rank"]}\t{i["leaguePoints"]}\n승리 : {i["wins"]}\n패배 : {i["losses"]}'
+                            'text': f'소환사이름 : {i["summonerName"]}\n티어 : {i["tier"]} {i["rank"]}\t{i["leaguePoints"]}점\n승리 : {i["wins"]}\n패배 : {i["losses"]}'
                         },
                     'keyboard':button
                 })
@@ -126,11 +122,4 @@ class Message(APIView) :
 class Keyboard(APIView):
 
     def get(self, request , format=None):
-<<<<<<< HEAD
-        return Response({
-            'type':'buttons',
-            'buttons':['소환사 검색']
-        })
-=======
         return Response(data=button)
->>>>>>> ef34e1df3620d382ee3fae25901631017f28ec60
