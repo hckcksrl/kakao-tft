@@ -94,7 +94,11 @@ class Message(APIView) :
            if i['queueType'] == 'RANKED_TFT':
                 return Response(data={
                     'message':
-                        {
+                        {   'photo': {
+                                'url': f'http://ddragon.leagueoflegends.com/cdn/9.17.1/img/profileicon/{summoner["profileIconId"]}.png',
+                                'width': 640,
+                                'height': 480
+                            },
                             'text': f'소환사이름 : {i["summonerName"]}\n티어 : {i["tier"]} {i["rank"]}\t{i["leaguePoints"]}\n승리 : {i["wins"]}\n패배 : {i["losses"]}'
                         }
                 })
