@@ -55,7 +55,7 @@ class Message(APIView) :
                 return Response(data={
                     'message':
                         {   'photo': {
-                                'url': f'http://ddragon.leagueoflegends.com/cdn/9.17.1/img/profileicon/{summoner["profileIconId"]}.png',
+                                'url': f'https://cdn.lolchess.gg/images/lol/tier/{i["tier"].lower()}_{len(i["rank"])}.png',
                                 'width': 640,
                                 'height': 480
                             },
