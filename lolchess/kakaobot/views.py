@@ -29,7 +29,22 @@ class Message(APIView) :
 
 
     def post(self, request , format=None):
-        print(requests.data)
+        data = request.data
+        summoner_id = data['action']['name']
+        print(data)
+        result = {
+                "version": "2.0",
+                "template": {
+                    "output": [
+                        {
+                            "simpleText": {
+                                "text": "옹박엘보우"
+                                }
+                            }
+                        ]
+                    }
+        }
+        return Response(status=status.HTTP_200_OK, data=result)
         # data = request.data
         # content = data['content']
         #
