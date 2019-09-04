@@ -29,45 +29,46 @@ class Message(APIView) :
 
 
     def post(self, request , format=None):
-        data = request.data
-        content = data['content']
-
-        if content == '소환사 검색':
-            return Response(data={
-                'message': {
-                    'text': '소환사 이름을 입력하세요'
-                }
-            })
-
-        summoner = self.get_summoner_id(content)
-        if summoner == False :
-            return Response(data={
-                'message':{
-                    'text': '소환사가 존재하지 않습니다.'
-                },
-                'keyboard': button
-            })
-        encrypt_id = summoner['id']
-        summoner_data = self.get_summoner_data(encrypt_id)
-
-        for i in summoner_data:
-           if i['queueType'] == 'RANKED_TFT':
-                return Response(data={
-                    'message':
-                        {   'photo': {
-                                'url': f'https://cdn.lolchess.gg/images/lol/tier/{i["tier"].lower()}_{len(i["rank"])}.png',
-                                'width': 640,
-                                'height': 640
-                            },
-                            'text': f'소환사이름 : {i["summonerName"]}\n티어 : {i["tier"]} {i["rank"]}    {i["leaguePoints"]}점\n승리 : {i["wins"]}\n패배 : {i["losses"]}'
-                        },
-                })
-
-        return Response(data={
-            'message': {
-                'text': '전적 검색 결과가 없습니다.'
-            },
-        })
+        print(requests.data)
+        # data = request.data
+        # content = data['content']
+        #
+        # if content == '소환사 검색':
+        #     return Response(data={
+        #         'message': {
+        #             'text': '소환사 이름을 입력하세요'
+        #         }
+        #     })
+        #
+        # summoner = self.get_summoner_id(content)
+        # if summoner == False :
+        #     return Response(data={
+        #         'message':{
+        #             'text': '소환사가 존재하지 않습니다.'
+        #         },
+        #         'keyboard': button
+        #     })
+        # encrypt_id = summoner['id']
+        # summoner_data = self.get_summoner_data(encrypt_id)
+        #
+        # for i in summoner_data:
+        #    if i['queueType'] == 'RANKED_TFT':
+        #         return Response(data={
+        #             'message':
+        #                 {   'photo': {
+        #                         'url': f'https://cdn.lolchess.gg/images/lol/tier/{i["tier"].lower()}_{len(i["rank"])}.png',
+        #                         'width': 640,
+        #                         'height': 640
+        #                     },
+        #                     'text': f'소환사이름 : {i["summonerName"]}\n티어 : {i["tier"]} {i["rank"]}    {i["leaguePoints"]}점\n승리 : {i["wins"]}\n패배 : {i["losses"]}'
+        #                 },
+        #         })
+        #
+        # return Response(data={
+        #     'message': {
+        #         'text': '전적 검색 결과가 없습니다.'
+        #     },
+        # })
 
 
 
