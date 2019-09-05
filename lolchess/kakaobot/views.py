@@ -30,15 +30,15 @@ class Message(APIView) :
 
     def post(self, request , format=None):
         data = request.data
-        summoner_id = data['action']['name']
-        print(data)
+        summoner_id = data['action']['params']['sys_text']
+        print(summoner_id)
         result = {
                 "version": "2.0",
                 "template": {
-                    "output": [
+                    "outputs": [
                         {
                             "simpleText": {
-                                "text": "옹박엘보우"
+                                "text": summoner_id
                                 }
                             }
                         ]
