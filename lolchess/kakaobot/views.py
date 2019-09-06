@@ -12,7 +12,7 @@ button = {
     'type': 'buttons',
     'buttons': ['소환사 검색']
 }
-RGAPI-e742c4b4-ea2e-4c8a-86ac-30d6c4932ae2
+
 class Message(APIView) :
 
     def get_summoner_id(self,nickname):
@@ -30,7 +30,8 @@ class Message(APIView) :
 
     def post(self, request , format=None):
         data = request.data
-        summoner_id = data['action']['params']['sys_text']
+        summoner_id = data['action']['params']['summoner']
+        print(summoner_id)
         summoner = self.get_summoner_id(summoner_id)
         if summoner == False :
             return Response(data={
