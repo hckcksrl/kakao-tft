@@ -55,19 +55,21 @@ class TFT(APIView) :
         for i in summoner_data:
            if i['queueType'] == 'RANKED_TFT':
                 return Response(data={
-                "version": "2.0",
-                "template": {
-                    "outputs": [
-                        {
-                            "basicCard": {
-                                "title" : i["summonerName"],
-                                "description" : f'티어 : {i["tier"]} {i["rank"]}    {i["leaguePoints"]}점\n승리 : {i["wins"]}\n패배 : {i["losses"]}'
-                                },
-                                "thumbnail" : f'http://ddragon.leagueoflegends.com/cdn/9.17.1/img/profileicon/{summoner["profileIconId"]}.png'
-                            }
-                        ]
-                    }
-        })
+                    "version": "2.0",
+                    "template": {
+                        "outputs": [
+                            {
+                                "basicCard": {
+                                    "title" : i["summonerName"],
+                                    "description" : f'티어 : {i["tier"]} {i["rank"]}    {i["leaguePoints"]}점\n승리 : {i["wins"]}\n패배 : {i["losses"]}'
+                                    },
+                                    "thumbnail" :{
+                                        "imageUrl" : f'http://ddragon.leagueoflegends.com/cdn/9.17.1/img/profileicon/{summoner["profileIconId"]}.png'
+                                    }
+                                }
+                            ]
+                        }
+                })
 
         return Response(data={
                 "version": "2.0",
@@ -115,7 +117,9 @@ class Rank(APIView):
                                 "title" : i["summonerName"],
                                 "description" : f'티어 : {i["tier"]} {i["rank"]}    {i["leaguePoints"]}점\n승리 : {i["wins"]}\n패배 : {i["losses"]}'
                                 },
-                                "thumbnail" : f'http://ddragon.leagueoflegends.com/cdn/9.17.1/img/profileicon/{summoner["profileIconId"]}.png'
+                                "thumbnail": {
+                                    "imageUrl": f'http://ddragon.leagueoflegends.com/cdn/9.17.1/img/profileicon/{summoner["profileIconId"]}.png'
+                                }
                             }
                         ]
                     }
