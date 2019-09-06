@@ -27,7 +27,6 @@ class Message(APIView) :
         data = requests.get(api)
         return data.json()
 
-
     def post(self, request , format=None):
         data = request.data
         summoner_id = data['action']['params']['summoner']
