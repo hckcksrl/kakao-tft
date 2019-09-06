@@ -14,7 +14,7 @@ button = {
 }
 
 
-def get_summoner_id(self, nickname):
+def get_summoner_id(nickname):
     api = f'https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/{nickname}?api_key={api_key}'
     data = requests.get(api)
     if data.status_code != 200:
@@ -22,7 +22,7 @@ def get_summoner_id(self, nickname):
     return data.json()
 
 
-def get_summoner_data(self, encrypt_id):
+def get_summoner_data(encrypt_id):
     api = f'https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/{encrypt_id}?api_key={api_key}'
     data = requests.get(api)
     return data.json()
