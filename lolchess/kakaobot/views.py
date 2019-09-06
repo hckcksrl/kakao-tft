@@ -30,7 +30,8 @@ class Message(APIView) :
 
     def post(self, request , format=None):
         data = request.data
-        summoner_id = data['action']['params']['sys_text']
+        summoner_id = data['action']['params']['summoner']
+        print(summoner_id)
         summoner = self.get_summoner_id(summoner_id)
         if summoner == False :
             return Response(data={
