@@ -1,3 +1,4 @@
 # kakao-tft
 
-kakao chatbot
+# django skill server
+\
