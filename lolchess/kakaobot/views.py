@@ -12,7 +12,7 @@ button = {
     'type': 'buttons',
     'buttons': ['소환사 검색']
 }
-RGAPI-e742c4b4-ea2e-4c8a-86ac-30d6c4932ae2
+
 class Message(APIView) :
 
     def get_summoner_id(self,nickname):
