@@ -35,9 +35,7 @@ class TFT(APIView) :
     def post(self, request , format=None):
         data = request.data
         summoner_id = data['action']['params']['summoner']
-        print(summoner_id)
         summoner = get_summoner_id(summoner_id)
-        print(summoner)
         if summoner == False :
             return Response(data={
                 "version": "2.0",
@@ -92,7 +90,6 @@ class Rank(APIView):
     def post(self, request):
         data = request.data
         summoner_id = data['action']['params']['summoner']
-        print(summoner_id)
         summoner = get_summoner_id(summoner_id)
         if summoner == False:
             return Response(data={
