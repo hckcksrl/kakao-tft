@@ -63,15 +63,15 @@ class TFT(APIView) :
                             {
                                 "basicCard": {
                                     "title" : i["summonerName"],
-                                    "description" : f'티어 : {i["tier"]} {i["rank"]}    {i["leaguePoints"]}점\n승리 : {i["wins"]}\n패배 : {i["losses"]}'
-                                    },
+                                    "description" : f'티어 : {i["tier"]} {i["rank"]}    {i["leaguePoints"]}점\n승리 : {i["wins"]}\n패배 : {i["losses"]}',
                                     "thumbnail" :{
                                         "imageUrl" : f'http://ddragon.leagueoflegends.com/cdn/9.17.1/img/profileicon/{summoner["profileIconId"]}.png'
                                     }
                                 }
-                            ]
-                        }
-                })
+                            }
+                        ]}
+                    }
+                )
 
         return Response(data={
                 "version": "2.0",
@@ -80,11 +80,12 @@ class TFT(APIView) :
                         {
                             "simpleText": {
                                 "text": '전적 검색 결과가 없습니다.'
-                                }
                             }
-                        ]
-                    }
-        })
+                        }
+                    ]
+                }
+            }
+        )
 
 class Rank(APIView):
 
@@ -116,16 +117,16 @@ class Rank(APIView):
                         "outputs": [
                             {
                                 "basicCard": {
-                                "title" : i["summonerName"],
-                                "description" : f'티어 : {i["tier"]} {i["rank"]}    {i["leaguePoints"]}점\n승리 : {i["wins"]}\n패배 : {i["losses"]}'
-                                },
-                                "thumbnail": {
-                                    "imageUrl": f'http://ddragon.leagueoflegends.com/cdn/9.17.1/img/profileicon/{summoner["profileIconId"]}.png'
+                                    "title" : i["summonerName"],
+                                    "description" : f'티어 : {i["tier"]} {i["rank"]}    {i["leaguePoints"]}점\n승리 : {i["wins"]}\n패배 : {i["losses"]}',
+                                    "thumbnail" :{
+                                        "imageUrl" : f'http://ddragon.leagueoflegends.com/cdn/9.17.1/img/profileicon/{summoner["profileIconId"]}.png'
+                                    }
                                 }
                             }
-                        ]
+                        ]}
                     }
-                })
+                )
 
         return Response(data={
             "version": "2.0",
