@@ -51,7 +51,6 @@ class TFT(APIView) :
         })
         encrypt_id = summoner['id']
         summoner_data = get_summoner_data(encrypt_id)
-        print(summoner_data)
         for i in summoner_data:
            if i['queueType'] == 'RANKED_TFT':
                 return Response(data={
