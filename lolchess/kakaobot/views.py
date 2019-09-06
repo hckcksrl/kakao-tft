@@ -37,6 +37,7 @@ class TFT(APIView) :
         summoner_id = data['action']['params']['summoner']
         print(summoner_id)
         summoner = get_summoner_id(summoner_id)
+        print(summoner)
         if summoner == False :
             return Response(data={
                 "version": "2.0",
@@ -52,6 +53,7 @@ class TFT(APIView) :
         })
         encrypt_id = summoner['id']
         summoner_data = get_summoner_data(encrypt_id)
+        print(summoner_data)
         for i in summoner_data:
            if i['queueType'] == 'RANKED_TFT':
                 return Response(data={
