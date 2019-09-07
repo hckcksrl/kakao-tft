@@ -37,6 +37,7 @@ class TFT(APIView) :
         summoner_id = data['action']['params']['summoner']
         block = data['userRequest']['block']['name']
         summoner = get_summoner_id(summoner_id)
+        
         if summoner == False :
             return Response(data={
                 "version": "2.0",
