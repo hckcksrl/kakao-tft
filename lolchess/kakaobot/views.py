@@ -35,6 +35,7 @@ class TFT(APIView) :
     def post(self, request , format=None):
         data = request.data
         summoner_id = data['action']['params']['summoner']
+        block = data['userRequest']['block']['name']
         summoner = get_summoner_id(summoner_id)
         if summoner == False :
             return Response(data={
@@ -51,26 +52,60 @@ class TFT(APIView) :
         })
         encrypt_id = summoner['id']
         summoner_data = get_summoner_data(encrypt_id)
-        for i in summoner_data:
-           if i['queueType'] == 'RANKED_TFT':
-                return Response(data={
+        if block =='롤토체스 소환사 검색':
+            for i in summoner_data:
+                if i['queueType'] == 'RANKED_TFT':
+                    return Response(data={
+                        "version": "2.0",
+                        "template": {
+                            "outputs": [
+                                {
+                                    "basicCard": {
+                                        "title" : i["summonerName"],
+                                        "description" : f'티어 : {i["tier"]} {i["rank"]}    {i["leaguePoints"]}점\n승리 : {i["wins"]}\n패배 : {i["losses"]}',
+                                        "thumbnail" :{
+                                            "imageUrl" : f'http://ddragon.leagueoflegends.com/cdn/9.17.1/img/profileicon/{summoner["profileIconId"]}.png'
+                                        }
+                                    }
+                                }
+                            ]}
+                        }
+                    )
+
+            return Response(data={
                     "version": "2.0",
                     "template": {
                         "outputs": [
                             {
-                                "basicCard": {
-                                    "title" : i["summonerName"],
-                                    "description" : f'티어 : {i["tier"]} {i["rank"]}    {i["leaguePoints"]}점\n승리 : {i["wins"]}\n패배 : {i["losses"]}',
-                                    "thumbnail" :{
-                                        "imageUrl" : f'http://ddragon.leagueoflegends.com/cdn/9.17.1/img/profileicon/{summoner["profileIconId"]}.png'
-                                    }
+                                "simpleText": {
+                                    "text": '전적 검색 결과가 없습니다.'
                                 }
                             }
-                        ]}
+                        ]
                     }
-                )
+                }
+            )
+        elif block == '소환사 검색':
+            for i in summoner_data:
+                if i['queueType'] == 'RANKED_SOLO_5x5':
+                    return Response(data={
+                        "version": "2.0",
+                        "template": {
+                            "outputs": [
+                                {
+                                    "basicCard": {
+                                        "title": i["summonerName"],
+                                        "description": f'티어 : {i["tier"]} {i["rank"]}    {i["leaguePoints"]}점\n승리 : {i["wins"]}\n패배 : {i["losses"]}',
+                                        "thumbnail": {
+                                            "imageUrl": f'http://ddragon.leagueoflegends.com/cdn/9.17.1/img/profileicon/{summoner["profileIconId"]}.png'
+                                        }
+                                    }
+                                }
+                            ]}
+                        }
+                    )
 
-        return Response(data={
+            return Response(data={
                 "version": "2.0",
                 "template": {
                     "outputs": [
@@ -81,60 +116,59 @@ class TFT(APIView) :
                         }
                     ]
                 }
-            }
-        )
-
-class Rank(APIView):
-
-    def post(self, request):
-        data = request.data
-        summoner_id = data['action']['params']['summoner']
-        summoner = get_summoner_id(summoner_id)
-        if summoner == False:
-            return Response(data={
-                "version": "2.0",
-                "template": {
-                    "outputs": [
-                        {
-                            "simpleText": {
-                                "text": '소환사가 존재하지 않습니다.'
-                            }
-                        }
-                    ]
-                }
             })
-        encrypt_id = summoner['id']
-        summoner_data = get_summoner_data(encrypt_id)
-        for i in summoner_data:
-            if i['queueType'] == 'RANKED_SOLO_5x5':
-                return Response(data={
-                    "version": "2.0",
-                    "template": {
-                        "outputs": [
-                            {
-                                "basicCard": {
-                                    "title" : i["summonerName"],
-                                    "description" : f'티어 : {i["tier"]} {i["rank"]}    {i["leaguePoints"]}점\n승리 : {i["wins"]}\n패배 : {i["losses"]}',
-                                    "thumbnail" :{
-                                        "imageUrl" : f'http://ddragon.leagueoflegends.com/cdn/9.17.1/img/profileicon/{summoner["profileIconId"]}.png'
-                                    }
-                                }
-                            }
-                        ]}
-                    }
-                )
 
-        return Response(data={
-            "version": "2.0",
-            "template": {
-                "outputs": [
-                    {
-                        "simpleText": {
-                            "text": '전적 검색 결과가 없습니다.'
-                        }
-                    }
-                ]
-            }
-        })
-
-
+# class Rank(APIView):
+#
+#     def post(self, request):
+#         data = request.data
+#         summoner_id = data['action']['params']['summoner']
+#         summoner = get_summoner_id(summoner_id)
+#         if summoner == False:
+#             return Response(data={
+#                 "version": "2.0",
+#                 "template": {
+#                     "outputs": [
+#                         {
+#                             "simpleText": {
+#                                 "text": '소환사가 존재하지 않습니다.'
+#                             }
+#                         }
+#                     ]
+#                 }
+#             })
+#         encrypt_id = summoner['id']
+#         summoner_data = get_summoner_data(encrypt_id)
+#         for i in summoner_data:
+#             if i['queueType'] == 'RANKED_SOLO_5x5':
+#                 return Response(data={
+#                     "version": "2.0",
+#                     "template": {
+#                         "outputs": [
+#                             {
+#                                 "basicCard": {
+#                                     "title" : i["summonerName"],
+#                                     "description" : f'티어 : {i["tier"]} {i["rank"]}    {i["leaguePoints"]}점\n승리 : {i["wins"]}\n패배 : {i["losses"]}',
+#                                     "thumbnail" :{
+#                                         "imageUrl" : f'http://ddragon.leagueoflegends.com/cdn/9.17.1/img/profileicon/{summoner["profileIconId"]}.png'
+#                                     }
+#                                 }
+#                             }
+#                         ]}
+#                     }
+#                 )
+#
+#         return Response(data={
+#             "version": "2.0",
+#             "template": {
+#                 "outputs": [
+#                     {
+#                         "simpleText": {
+#                             "text": '전적 검색 결과가 없습니다.'
+#                         }
+#                     }
+#                 ]
+#             }
+#         })
+#
+#
