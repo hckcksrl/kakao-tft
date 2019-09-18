@@ -2,6 +2,6 @@
 
 # django skill server
 
-# uwsgi
+# uwsgi + nginx
 
 # kakao-chat bot
