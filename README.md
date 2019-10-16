@@ -18,6 +18,9 @@
 * Django
 * Riot API
 * Kakao OpenBuilder
+* Uwsgi
+* Nginx
+* AWS EC2
 
 # 첨부
 
